@@ -53,6 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openLoginModal() {
     loginModal.classList.remove("hidden");
+    // Ustaw focus na pierwszym polu
+    setTimeout(() => {
+      document.getElementById("username").focus();
+    }, 50);
   }
 
   function closeLoginModal() {
@@ -263,9 +267,12 @@ document.addEventListener("DOMContentLoaded", () => {
     userMenu.classList.add("hidden");
   });
 
-  cancelLoginBtn.addEventListener("click", closeLoginModal);
+  cancelLoginBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeLoginModal();
+  });
 
-  loginModal.addEventListener("click", (event) => {
+  loginModal.addEventListener("mousedown", (event) => {
     if (event.target === loginModal) {
       closeLoginModal();
     }
@@ -323,6 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
     userMenu.classList.add("hidden");
   });
 
-  // Initialize app
+  // Upewnij się, że modal jest ukryty na starcie
+  loginModal.classList.add("hidden");
   syncAuthStatus().then(fetchActivities);
 });
