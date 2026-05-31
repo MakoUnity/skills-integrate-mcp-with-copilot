@@ -330,7 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
     userMenu.classList.add("hidden");
   });
 
-  // Upewnij się, że modal jest ukryty na starcie
-  loginModal.classList.add("hidden");
+  // Nie wymuszaj ukrycia modala w JS, polegaj na klasie hidden w HTML
   syncAuthStatus().then(fetchActivities);
 });
